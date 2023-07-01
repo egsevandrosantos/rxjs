@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 
 @Component({
   selector: 'app-observables',
@@ -20,6 +20,7 @@ export class ObservablesComponent implements OnInit {
       subscriber.complete();
     });
 
+    const it = interval(1000); // Cria um observable que quando escutado gera um numero incremental a partir de 0 com 1 segundo de intervalo
     const observer = {
       next: (res: any) => {
         console.log('Observer next value:', res);
@@ -32,6 +33,12 @@ export class ObservablesComponent implements OnInit {
       },
     };
 
-    observable.subscribe(observer);
+    const subscription = observable.subscribe(observer);
+    const subscription2 = it.subscribe(console.log);
+
+    setTimeout(() => {
+      subscription2.unsubscribe();
+    }, 3000);
+    subscription.unsubscribe();
   }
 }
