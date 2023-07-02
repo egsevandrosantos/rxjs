@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ObservablesComponent } from './components/observables/observables.component';
 import { SubjectComponent } from './components/subject/subject.component';
+import { FromComponent } from './components/operadores-criacao/from/from.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ObservablesComponent,
-    SubjectComponent
+    SubjectComponent,
+    FromComponent
   ],
   imports: [
     BrowserModule,
