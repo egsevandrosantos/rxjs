@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concat, forkJoin, interval, map, merge, zip } from 'rxjs';
+import { concat, forkJoin, interval, map, merge, of, toArray, zip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -60,5 +60,16 @@ export class ApiService {
     return this.http.get(
       `http://localhost:8080/generic/users?where=cpf=${cpf}`
     );
+  }
+
+  getUsersToArray() {
+    const obj = { name: 'Evandro' };
+
+    const arr$ = of(obj).pipe(toArray()); // Transforma o valor em array
+    arr$.subscribe(console.log);
+
+    return this.http
+      .get('http://localhost:8080/generic/users/1')
+      .pipe(toArray());
   }
 }
