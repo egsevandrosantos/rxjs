@@ -13,6 +13,7 @@ import { TimerComponent } from './components/operadores-criacao/timer/timer.comp
 import { ThrowErrorComponent } from './components/operadores-criacao/throw-error/throw-error.component';
 import { AjaxComponent } from './components/operadores-criacao/ajax/ajax.component';
 import { ForkJoinComponent } from './components/operadores-criacao-juncao/fork-join/fork-join.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,10 @@ import { ForkJoinComponent } from './components/operadores-criacao-juncao/fork-j
     TimerComponent,
     ThrowErrorComponent,
     AjaxComponent,
-    ForkJoinComponent
+    ForkJoinComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

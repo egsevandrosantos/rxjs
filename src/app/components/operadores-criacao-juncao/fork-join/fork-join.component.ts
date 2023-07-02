@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin, of, throwError, timer } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-fork-join',
@@ -8,8 +9,11 @@ import { ajax } from 'rxjs/ajax';
   styleUrls: ['./fork-join.component.scss'],
 })
 export class ForkJoinComponent implements OnInit {
+  constructor(private apiService: ApiService) {}
+
   ngOnInit(): void {
-    this.operatorForkJoin();
+    // this.operatorForkJoin();
+    this.operatorForkJoin2();
   }
 
   operatorForkJoin() {
@@ -39,5 +43,9 @@ export class ForkJoinComponent implements OnInit {
     httpMulti2$.subscribe((res) => console.log(res)); // Recebe Ocorreu um erro
 
     // Se um ou mais observables retorna erro apenas o primeiro que responde com erro é retornado no subscribe e os outros observables são ignorados
+  }
+
+  operatorForkJoin2() {
+    this.apiService.getUsers().subscribe((res) => console.log(res));
   }
 }
