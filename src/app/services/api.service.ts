@@ -72,4 +72,10 @@ export class ApiService {
       .get('http://localhost:8080/generic/users/1')
       .pipe(toArray());
   }
+
+  getUsersDebounceTime(name: string) {
+    return this.http.get(
+      `http://localhost:8080/generic/users?where=name=${name}`
+    );
+  }
 }
