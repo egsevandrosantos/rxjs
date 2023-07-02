@@ -51,4 +51,14 @@ export class ApiService {
       .get('https://jsonplaceholder.typicode.com/todos/1')
       .pipe(map((res: any) => res.title));
   }
+
+  getUserSwitchMap() {
+    return this.http.get('http://localhost:8080/generic/usersCpfs');
+  }
+
+  getUserSwitchMapSearch(cpf: string) {
+    return this.http.get(
+      `http://localhost:8080/generic/users?where=cpf=${cpf}`
+    );
+  }
 }
