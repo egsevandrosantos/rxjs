@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
+import { forkJoin, zip } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,5 +15,14 @@ export class ApiService {
     });
 
     return http$;
+  }
+
+  getUsersWithZip() {
+    const apiLocal$ = this.http.get('http://localhost:8080/generic/users');
+    const apiExterna$ = this.http.get(
+      'https://jsonplaceholder.typicode.com/todos/1'
+    );
+    const result$ = zip(apiLocal$, apiExterna$);
+    return result$;
   }
 }
