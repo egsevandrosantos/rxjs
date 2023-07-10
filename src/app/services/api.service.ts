@@ -1,6 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concat, forkJoin, interval, map, merge, of, toArray, zip } from 'rxjs';
+import {
+  concat,
+  forkJoin,
+  interval,
+  map,
+  merge,
+  of,
+  share,
+  shareReplay,
+  toArray,
+  zip,
+} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -77,5 +88,11 @@ export class ApiService {
     return this.http.get(
       `http://localhost:8080/generic/users?where=name=${name}`
     );
+  }
+
+  getUserShareReplay() {
+    return this.http
+      .get(`http://localhost:8080/generic/users`)
+      .pipe(shareReplay(1)); // Retorna com ReplaySubject, parametro é o buffer
   }
 }
