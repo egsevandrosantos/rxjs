@@ -27,6 +27,7 @@ import { TakeUntilComponent } from './components/operadores-filtragem/take-until
 import { TakeWhileComponent } from './components/operadores-filtragem/take-while/take-while.component';
 import { SkipComponent } from './components/operadores-filtragem/skip/skip.component';
 import { DebounceTimeComponent } from './components/operadores-filtragem/debounce-time/debounce-time.component';
+import { SwitchAllComponent } from './components/operadores-juncao/switch-all/switch-all.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { DebounceTimeComponent } from './components/operadores-filtragem/debounc
     TakeWhileComponent,
     SkipComponent,
     DebounceTimeComponent,
+    SwitchAllComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
