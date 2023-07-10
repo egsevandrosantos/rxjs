@@ -95,4 +95,8 @@ export class ApiService {
       .get(`http://localhost:8080/generic/users`)
       .pipe(shareReplay(1)); // Retorna com ReplaySubject, parametro é o buffer
   }
+
+  getUserShare() {
+    return this.http.get(`http://localhost:8080/generic/users`).pipe(share()); // Retorna com um Subject
+  }
 }
