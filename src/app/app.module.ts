@@ -34,6 +34,7 @@ import { WithLatestFromComponent } from './components/operadores-juncao/with-lat
 import { ShareReplayComponent } from './components/operadores-multicasting/share-replay/share-replay.component';
 import { ShareComponent } from './components/operadores-multicasting/share/share.component';
 import { CatchErrorComponent } from './components/operadores-tratamento-erros/catch-error/catch-error.component';
+import { RetryWhenComponent } from './components/operadores-tratamento-erros/retry-when/retry-when.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { CatchErrorComponent } from './components/operadores-tratamento-erros/ca
     ShareReplayComponent,
     ShareComponent,
     CatchErrorComponent,
+    RetryWhenComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
