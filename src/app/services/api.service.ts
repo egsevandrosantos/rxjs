@@ -8,8 +8,10 @@ import {
   map,
   merge,
   of,
+  retry,
   share,
   shareReplay,
+  throwError,
   toArray,
   zip,
 } from 'rxjs';
@@ -104,17 +106,22 @@ export class ApiService {
   getUserCatchError() {
     return (
       this.http
-        .get(`http://localhost:8080/generic/usersa`)
+        .get(`http://localhost:8080/generic/users/-1`)
         // .pipe(catchError((error) => of('Ocorreu um erro: ', error)));
         .pipe(
           catchError((error) => {
             if (error.status === 0) {
               return of('Ocorreu um erro na aplicação. Tente mais tarde!');
-            } else if (error.status == 404) {
-              return of(error.message);
+            } else if (error.status === 404) {
+              // return of(error.message);
+              console.log(error.message);
+            } else {
+              return of('Ocorreu um erro no servidor. Tente mais tarde!');
             }
-            return of('Ocorreu um erro no servidor. Tente mais tarde!');
-          })
+
+            return throwError(() => 'Ocorreu um erro');
+          }),
+          retry(2) // Tenta a primeira vez + o número informado (1 + 2 = 3)
         )
     );
   }
