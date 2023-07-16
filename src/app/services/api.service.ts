@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  catchError,
   concat,
   forkJoin,
   interval,
@@ -98,5 +99,23 @@ export class ApiService {
 
   getUserShare() {
     return this.http.get(`http://localhost:8080/generic/users`).pipe(share()); // Retorna com um Subject
+  }
+
+  getUserCatchError() {
+    return (
+      this.http
+        .get(`http://localhost:8080/generic/usersa`)
+        // .pipe(catchError((error) => of('Ocorreu um erro: ', error)));
+        .pipe(
+          catchError((error) => {
+            if (error.status === 0) {
+              return of('Ocorreu um erro na aplicação. Tente mais tarde!');
+            } else if (error.status == 404) {
+              return of(error.message);
+            }
+            return of('Ocorreu um erro no servidor. Tente mais tarde!');
+          })
+        )
+    );
   }
 }

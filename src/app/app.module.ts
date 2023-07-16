@@ -33,6 +33,7 @@ import { CombineLatestComponent } from './components/operadores-juncao/combine-l
 import { WithLatestFromComponent } from './components/operadores-juncao/with-latest-from/with-latest-from.component';
 import { ShareReplayComponent } from './components/operadores-multicasting/share-replay/share-replay.component';
 import { ShareComponent } from './components/operadores-multicasting/share/share.component';
+import { CatchErrorComponent } from './components/operadores-tratamento-erros/catch-error/catch-error.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ShareComponent } from './components/operadores-multicasting/share/share
     WithLatestFromComponent,
     ShareReplayComponent,
     ShareComponent,
+    CatchErrorComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
