@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   catchError,
   concat,
+  delay,
   forkJoin,
   interval,
   map,
@@ -124,5 +125,11 @@ export class ApiService {
           retry(2) // Tenta a primeira vez + o número informado (1 + 2 = 3)
         )
     );
+  }
+
+  getUserDelay() {
+    return this.http
+      .get('http://localhost:8080/generic/users')
+      .pipe(delay(5000)); // Realiza a requisição e após 5 segundos retorna o valor
   }
 }
