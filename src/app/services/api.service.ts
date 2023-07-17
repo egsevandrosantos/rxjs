@@ -13,6 +13,7 @@ import {
   share,
   shareReplay,
   throwError,
+  timeout,
   toArray,
   zip,
 } from 'rxjs';
@@ -131,5 +132,13 @@ export class ApiService {
     return this.http
       .get('http://localhost:8080/generic/users')
       .pipe(delay(5000)); // Realiza a requisição e após 5 segundos retorna o valor
+  }
+
+  getUserTimeout() {
+    return this.http.get('http://localhost:8080/generic/users').pipe(
+      delay(5000), // Resposta após 5 segundos
+      timeout(2500), // Timeout se não tiver resposta em 2.5 segundos
+      catchError((error) => of('Ocorreu um erro: ', error))
+    );
   }
 }
